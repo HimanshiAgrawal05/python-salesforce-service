@@ -5,7 +5,6 @@ app = Flask(__name__)
  
 @app.route('/run-script')
 def run_script():
-    # Load the local python file (assume downloaded already)
     spec = importlib.util.spec_from_file_location("script", "./script.py")
     script = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(script)
@@ -16,4 +15,4 @@ def run_script():
     return jsonify([]), 500
  
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(host='0.0.0.0', port=5000)
